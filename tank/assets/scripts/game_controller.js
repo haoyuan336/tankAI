@@ -38,7 +38,12 @@ cc.Class({
                         // this.tankNode.getComponent("tank").rotationRight();
                         console.log("pressed d");
                         this.rotationLeft = "right";
+                        break;
+                    case cc.KEY.space:
+                        // this.shoot = true;
+                        this.tankNode.getComponent("tank").shoot();
 
+                       console.log("space");
                         break;
                 }
             },
@@ -56,14 +61,19 @@ cc.Class({
                     case cc.KEY.d:
                         this.rotationLeft = undefined;
                         break;
+                    case cc.KEY.space:
+                        break;
                     default:
                         break;
                 }
             }
         },this.node);
 
+
+
+
     },
-    update: function () {
+    update: function (dt) {
        if (this.moveForword === "forword"){
            this.tankNode.getComponent("tank").moveForword();
        }else if(this.moveForword === "back"){
@@ -75,8 +85,11 @@ cc.Class({
 
        }else if (this.rotationLeft === "right"){
            this.tankNode.getComponent("tank").rotationRight();
-
        }
+
+       // if (this.shoot){
+       //      this.tankNode.getComponent("tank").shoot(dt);
+       // }
     }
 
     // called every frame, uncomment this function to activate update callback
