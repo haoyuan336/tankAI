@@ -17,6 +17,7 @@ cc.Class({
         let collisionManager = cc.director.getCollisionManager();
         collisionManager.enabled = true;
         collisionManager.debugDraw = true;
+        collisionManager.enabledDrawBoundingBox = true;
 
     },
     addOneBullet: function (data) {
@@ -24,9 +25,6 @@ cc.Class({
         let bullet = cc.instantiate(this.bulletPrefab);
         bullet.parent = this.node;
         bullet.getComponent("bullet").initWithData(data);
-
-
-
 
     }
 

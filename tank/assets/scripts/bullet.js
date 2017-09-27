@@ -23,6 +23,9 @@ cc.Class({
     onLoad: function () {
         this.speed = 1000;
         this.state = BulletState.Invalide;
+        let manager = cc.director.getCollisionManager();
+        manager.enabled = true;
+
 
     },
     initWithData: function (data) {
@@ -58,13 +61,14 @@ cc.Class({
         this.state = state;
     },
     onCollisionEnter: function (other, self) {
-        
+        console.log('碰撞了');
     },
     onCollisionStay: function (other, self) {
+        console.log("碰撞");
 
     },
     onCollisionExit: function (other, self) {
-
+        console.log("结束碰撞");
     }
     ,
     onDestroy: function () {
