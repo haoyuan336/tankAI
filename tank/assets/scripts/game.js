@@ -6,6 +6,14 @@ cc.Class({
         bulletPrefab: {
             default: null,
             type: cc.Prefab
+        },
+        tankNode: {
+            default: null,
+            type: cc.Node
+        },
+        worldBg: {
+            default: null,
+            type: cc.Node
         }
 
     },
@@ -16,6 +24,7 @@ cc.Class({
 
         let collisionManager = cc.director.getCollisionManager();
         collisionManager.enabled = true;
+        collisionManager.enabledDebugDraw = true;
         collisionManager.debugDraw = true;
         collisionManager.enabledDrawBoundingBox = true;
 

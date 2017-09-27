@@ -63,7 +63,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 18
+        "__id__": 16
       }
     ],
     "_prefab": null,
@@ -124,14 +124,14 @@
         "__id__": 6
       },
       {
-        "__id__": 15
+        "__id__": 13
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 17
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -416,16 +416,10 @@
     "_components": [
       {
         "__id__": 12
-      },
-      {
-        "__id__": 13
-      },
-      {
-        "__id__": 14
       }
     ],
     "_prefab": null,
-    "_id": "3aGjb7/t1DN76NnTfYUAIz",
+    "_id": "2759ey6JJpHTJ9cKrypEFIz",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -488,54 +482,6 @@
     "_atlas": null
   },
   {
-    "__type__": "cc.RigidBody",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 11
-    },
-    "_enabled": true,
-    "_type": 2,
-    "_allowSleep": true,
-    "_gravityScale": 1,
-    "_linearDamping": 0,
-    "_angularDamping": 0,
-    "_linearVelocity": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_angularVelocity": 0,
-    "_fixedRotation": false,
-    "enabledContactListener": false,
-    "bullet": false
-  },
-  {
-    "__type__": "cc.PhysicsBoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 11
-    },
-    "_enabled": true,
-    "tag": 0,
-    "_density": 1,
-    "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "body": null,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 1728,
-      "height": 972
-    }
-  },
-  {
     "__type__": "cc.Node",
     "_name": "tank_red",
     "_objFlags": 0,
@@ -547,7 +493,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 16
+        "__id__": 14
       }
     ],
     "_prefab": null,
@@ -592,7 +538,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 15
+      "__id__": 13
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -623,6 +569,12 @@
     "_enabled": true,
     "bulletPrefab": {
       "__uuid__": "6960a573-e78c-43c0-86f9-77721fba9bb3"
+    },
+    "tankNode": {
+      "__id__": 6
+    },
+    "worldBg": {
+      "__id__": 11
     }
   },
   {

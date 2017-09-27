@@ -23,9 +23,6 @@ cc.Class({
     onLoad: function () {
         this.speed = 1000;
         this.state = BulletState.Invalide;
-        let manager = cc.director.getCollisionManager();
-        manager.enabled = true;
-
 
     },
     initWithData: function (data) {
@@ -50,6 +47,7 @@ cc.Class({
         switch (state){
             case BulletState.Running:
                 cc.log("bullet state running");
+                this.node.getComponent(cc.RigidBody).linearVelocity = cc.p(0,20);
                 break;
             case BulletState.OutScreen:
                 this.node.parent.removeChild(this.node);

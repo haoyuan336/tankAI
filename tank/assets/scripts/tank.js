@@ -59,5 +59,8 @@ cc.Class({
     update: function (dt) {
 
 
+    },
+    onCollisionEnter: function (other, self) {
+        console.log("collision enter");
     }
 });
