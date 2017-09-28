@@ -52,14 +52,12 @@ cc.Class({
                 cc.log("bullet state running");
                 break;
             case BulletState.OutScreen:
-                this.node.parent.removeChild(this.node);
                 this.node.destroy();
                 break;
             case BulletState.HitedEnemy:
                 global.event.fire("killed_one", {
                     uid: this.masterUid
                 });
-                this.node.parent.removeChild(this.node);
                 this.node.destroy();
                 break;
             default:
@@ -69,20 +67,23 @@ cc.Class({
     },
     onCollisionEnter: function (other, self) {
 
-        if (other.getComponent(cc.BoxCollider).tag === 3){
-            cc.log("击中了坦克");
-            this.setState(BulletState.HitedEnemy);
 
+        if (other.getComponent(cc.CircleCollider)){
+            if (other.getComponent(cc.CircleCollider).tag === 3){
+                cc.log("击中了坦克");
+                this.setState(BulletState.HitedEnemy);
+            }
         }
     },
     onCollisionStay: function (other, self) {
 
     },
     onCollisionExit: function (other, self) {
-
-        if (other.getComponent(cc.BoxCollider).tag === 1){
-            console.log("离开了墙体");
-            this.setState(BulletState.OutScreen);
+        if (other.getComponent(cc.BoxCollider)){
+            if (other.getComponent(cc.BoxCollider).tag === 1){
+                console.log("离开了墙体");
+                this.setState(BulletState.OutScreen);
+            }
         }
     }
     ,

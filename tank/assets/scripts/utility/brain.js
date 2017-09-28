@@ -2,6 +2,7 @@
  * Created by chuhaoyuan on 2017/9/28.
  */
 import Neuron from './neuron'
+import defines from './../defines'
 const Brain = function () {
   let that = {};
 
@@ -11,24 +12,15 @@ const Brain = function () {
   let time = 0;
   let _behaviour = undefined;
 
-  const BehaviourList = ["moveforword","rotationleft","moveback","rotationright","shoot"];
+  const BehaviourList = Object.keys(defines.tankBehaviourMap);
 
 
-  that.getBehaviour = function (dt) {
-
-    if (time >= Math.random() * 2 + 1){
-      time = 0;
-      _behaviour = BehaviourList[Math.round(Math.random() * BehaviourList.length - 1)];
-
-    }else {
-      time += dt
-    }
-
-    if (_behaviour === "shoot"){
-      time = 3;
-    }
+  that.getBehaviour = function () {
+    let index = Math.floor(Math.random() * (BehaviourList.length - 1));
+    _behaviour = BehaviourList[index];
+    console.log('index = ' + index);
+    console.log("behaviour" + _behaviour);
     return _behaviour;
-
   };
   return that;
 };

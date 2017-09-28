@@ -102,7 +102,7 @@
     "_enabled": true
   },
   {
-    "__type__": "cc.BoxCollider",
+    "__type__": "cc.CircleCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -115,11 +115,7 @@
       "x": 0,
       "y": 0
     },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 29,
-      "height": 29
-    }
+    "_radius": 14.5
   },
   {
     "__type__": "cc.PrefabInfo",
