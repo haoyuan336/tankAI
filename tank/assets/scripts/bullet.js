@@ -1,7 +1,9 @@
+import global from './global'
 const BulletState = {
     Invalide: -1,
     Running: 1,
-    OutScreen: 2
+    OutScreen: 2,
+    HitedEnemy: 3
 };
 cc.Class({
     extends: cc.Component,
@@ -30,7 +32,8 @@ cc.Class({
         console.log("init with data  =" + JSON.stringify(data));
         this.node.position = data.position;
         this.direction = data.direction;
-        this.setState(BulletState.Running)
+        this.setState(BulletState.Running);
+        this.masterUid = data.master;
     },
 
     // called every frame, uncomment this function to activate update callback
@@ -47,9 +50,15 @@ cc.Class({
         switch (state){
             case BulletState.Running:
                 cc.log("bullet state running");
-                this.node.getComponent(cc.RigidBody).linearVelocity = cc.p(0,20);
                 break;
             case BulletState.OutScreen:
+                this.node.parent.removeChild(this.node);
+                this.node.destroy();
+                break;
+            case BulletState.HitedEnemy:
+                global.event.fire("killed_one", {
+                    uid: this.masterUid
+                });
                 this.node.parent.removeChild(this.node);
                 this.node.destroy();
                 break;
@@ -59,14 +68,22 @@ cc.Class({
         this.state = state;
     },
     onCollisionEnter: function (other, self) {
-        console.log('碰撞了');
+
+        if (other.getComponent(cc.BoxCollider).tag === 3){
+            cc.log("击中了坦克");
+            this.setState(BulletState.HitedEnemy);
+
+        }
     },
     onCollisionStay: function (other, self) {
-        console.log("碰撞");
 
     },
     onCollisionExit: function (other, self) {
-        console.log("结束碰撞");
+
+        if (other.getComponent(cc.BoxCollider).tag === 1){
+            console.log("离开了墙体");
+            this.setState(BulletState.OutScreen);
+        }
     }
     ,
     onDestroy: function () {

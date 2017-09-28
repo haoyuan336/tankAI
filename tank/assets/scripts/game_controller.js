@@ -20,7 +20,6 @@ cc.Class({
                 switch (keyCode){
                     case cc.KEY.w:
                         this.moveForword = "forword";
-                        console.log("pressed w");
                         break;
                     case cc.KEY.s:
                         // this.tankNode.getComponent("tank").moveBack();
@@ -87,13 +86,6 @@ cc.Class({
            this.tankNode.getComponent("tank").rotationRight();
        }
 
-       // if (this.shoot){
-       //      this.tankNode.getComponent("tank").shoot(dt);
-       // }
     }
 
-    // called every frame, uncomment this function to activate update callback
-    // update: function (dt) {
-
-    // },
 });

@@ -1,16 +1,38 @@
 import global from './global'
+import Brain from './utility/brain'
+const TankState = {
+    Invalide: -1,
+    Running: 1,
+    OutScreen: 2,
+    BeKilled: 3,
+}
 cc.Class({
     extends: cc.Component,
 
     properties: {
 
+        scoreLabel: {
+            default: null,
+            type: cc.Label
+        }
     },
 
     // use this for initialization
     onLoad: function () {
         this.direction = cc.p(0,1);
         this.speed = 0;
-        this.shootTotalTime = 0.5;
+        this.brain = Brain();
+        this.score = 0;
+
+        global.event.on("killed_one", this.tankKillOne.bind(this));
+
+
+    },
+    initWithData: function (data) {
+        this.uid = data.id;
+        this.node.position = cc.p(Math.random() * 1000 - 500, Math.random() * 800 - 400);
+        this.state = TankState.Running;
+
     },
 
     moveForword: function () {
@@ -39,28 +61,97 @@ cc.Class({
         this.node.rotation = 180 /Math.PI * angle;
     },
     shoot: function () {
-        // if (this.shootTotalTime > 0.5){
-        //     this.shootTotalTime = 0;
-        //     this.shootBullet();
-        // }else {
-        //     this.shootTotalTime += dt;
-        // }
         this.shootBullet();
     },
     shootBullet: function () {
         // cc.log("shoot on bullet");
         global.event.fire("shoot_one_bullet", {
-            position: this.node.position,
-            direction: this.direction
+            position: cc.pAdd(this.node.position,cc.pMult(cc.pNormalize(this.direction), 100)),
+            direction: this.direction,
+            master: this.uid
         })
     },
 
-
     update: function (dt) {
+        if (this.state === TankState.Running){
+            this.scoreLabel.string = this.score + '';
+            switch (this.brain.getBehaviour(dt)){
+                case "moveforword":
+                    this.moveForword();
+                    break;
+                case "rotationleft":
+                    this.rotationLeft();
+                    break;
+                case "moveback":
+                    this.moveBack();
+                    break;
+                case "rotationright":
+                    this.rotationRight();
+                    break;
+                case "shoot":
+                    this.shoot();
+                    break;
+                default:
+                    break;
+            }
+        }
 
 
     },
     onCollisionEnter: function (other, self) {
-        console.log("collision enter");
+        // if (other.){
+        //
+        // }
+        if (other.getComponent(cc.BoxCollider).tag === 2){
+            this.setState(TankState.BeKilled);
+        }
+    },
+    onCollisionStay: function (other, self) {
+
+    },
+    onCollisionExit: function (other, self) {
+
+        // if (other.name === "world_bg"){
+        //     console.log("跑出去了");
+        // }
+        if (other.getComponent(cc.BoxCollider).tag === 1){
+            console.log("tank  out screen");
+            this.setState(TankState.OutScreen);
+        }
+
+    }
+    ,
+    setState: function (state) {
+        if (this.state === state){
+            return;
+        }
+        switch (state){
+            case TankState.Running:
+                cc.log("tank runing");
+                break;
+            case TankState.OutScreen:
+                cc.log("世界外面去了");
+                this.node.parent.removeChild(this.node);
+                this.node.destroy();
+                break;
+            case TankState.BeKilled:
+                this.offListener();
+                this.node.parent.removeChild(this.node);
+                this.node.destroy();
+                break;
+        }
+        this.state = state;
+    },
+    tankKillOne: function (data) {
+        if (data.uid === this.uid){
+            //我杀死的
+            this.score ++;
+        }
+    },
+    onDestroy: function () {
+
+    },
+    offListener: function () {
+        global.event.off("killed_one", this.tankKillOne);
     }
 });
