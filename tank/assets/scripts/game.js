@@ -39,6 +39,50 @@ cc.Class({
         }
 
 
+        //
+        // var X = [
+        //     [0,0,1],
+        //     [0,1,1],
+        //     [1,0,1],
+        //     [1,1,1]
+        // ];
+        // var y = [
+        //     [0],
+        //     [0],
+        //     [1],
+        //     [1]
+        // ];
+        //
+        // function nonlin(x, deriv) {
+        //     if (deriv){
+        //         return numeric.mul(x, numeric.sub(1, x));
+        //     }
+        //     return numeric.div(1, numeric.add(1, numeric.exp(numeric.neg(x))));
+        // }
+        // function train_neural(X, y, iteration) {
+        //     var syn0 = numeric.sub(numeric.mul(2, numeric.random([3, 1])),1);
+        //     console.log("syn0 = " + JSON.stringify(syn0));
+        //     var i = 0 ;
+        //     for (; i < iteration ; i ++){
+        //         var l0 = X;
+        //         var l1 = nonlin(numeric.dot(l0, syn0));
+        //         var l1_error = numeric.sub(y, l1);
+        //         var l1_delta = numeric.mul(l1_error, nonlin(l1, true));
+        //         syn0 = numeric.add(syn0, numeric.dot(numeric.transpose(l0), l1_delta));
+        //     }
+        //
+        //
+        //     console.log("syn0 = " + JSON.stringify(syn0));
+        //
+        //     var result = nonlin(numeric.dot(X, syn0));
+        //     console.log("resylt" + JSON.stringify(result));
+        //
+        // }
+        //
+        //
+        //
+        // train_neural(X, y, 5000);
+
     },
     addOneBullet: function (data) {
         //添加一颗子弹
