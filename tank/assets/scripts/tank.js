@@ -123,15 +123,15 @@ cc.Class({
                     break;
                 case defines.tankBehaviourMap.rotationleft:
                     this.rotationLeft();
-                    cc.log("node angle = " + this.node.rotation);
-                    cc.log("angle= " + Math.abs(this.node.rotation - this.targetAngle));
+                    // cc.log("node angle = " + this.node.rotation);
+                    // cc.log("angle= " + Math.abs(this.node.rotation - this.targetAngle));
                     if (Math.abs(this.node.rotation - this.targetAngle) < 5){
                         this.setState(TankState.GetBehaviuor);
                     }
                     break;
                 case defines.tankBehaviourMap.rotationright:
-                    cc.log("node angle = " + this.node.rotation);
-                    cc.log("angle= " + Math.abs(this.node.rotation - this.targetAngle));
+                    // cc.log("node angle = " + this.node.rotation);
+                    // cc.log("angle= " + Math.abs(this.node.rotation - this.targetAngle));
                     this.rotationRight();
                     if (Math.abs(this.node.rotation - this.targetAngle) < 5){
                         this.setState(TankState.GetBehaviuor);
@@ -168,7 +168,7 @@ cc.Class({
         // }
         if (other.getComponent(cc.BoxCollider)){
             if (other.getComponent(cc.BoxCollider).tag === 1){
-                console.log("tank  out screen");
+                // console.log("tank  out screen");
                 this.setState(TankState.OutScreen);
             }
         }
@@ -182,7 +182,7 @@ cc.Class({
         }
         switch (state){
             case TankState.Running:
-                cc.log("tank runing");
+                // cc.log("tank runing");
                 break;
             case TankState.OutScreen:
                 cc.log("世界外面去了");

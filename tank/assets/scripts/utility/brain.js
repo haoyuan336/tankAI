@@ -18,8 +18,8 @@ const Brain = function () {
   that.getBehaviour = function () {
     let index = Math.floor(Math.random() * (BehaviourList.length - 1));
     _behaviour = BehaviourList[index];
-    console.log('index = ' + index);
-    console.log("behaviour" + _behaviour);
+    // console.log('index = ' + index);
+    // console.log("behaviour" + _behaviour);
     return _behaviour;
   };
   return that;
